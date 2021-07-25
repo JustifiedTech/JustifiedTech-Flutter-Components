@@ -1,9 +1,11 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import '../../../config/size_config.dart';
-import '../../../config/constants.dart';
+import './build_dot.dart';
 import './welcome_content.dart';
 import '../../../components/button.dart';
 import '../../../components/ask_button.dart';
+import './splash_list.dart';
 
 class Body extends StatefulWidget {
   Body({Key key}) : super(key: key);
@@ -13,21 +15,39 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
-  int currentIndex = 0;
-  List<Map<String, String>> splashData = [
-    {
-      'text': 'Welcome to Justified Store, Let\'s Shop!',
-      'image': 'assets/images/splash_1.png'
-    },
-    {
-      'text': 'Let\'s take care of your shopping',
-      'image': 'assets/images/splash_2.png'
-    },
-    {
-      'text': 'Shopping made easy with us',
-      'image': 'assets/images/splash_3.png'
-    },
-  ];
+  int _currentIndex = 0;
+
+  final PageController _pageController = PageController(initialPage: 0);
+  @override
+  void initState() {
+    super.initState();
+    Timer.periodic(Duration(seconds: 10), (Timer timer) {
+      if (_currentIndex < 2) {
+        _currentIndex++;
+      } else {
+        _currentIndex = 0;
+      }
+
+      _pageController.animateToPage(
+        _currentIndex,
+        duration: Duration(milliseconds: 5000),
+        curve: Curves.easeIn,
+      );
+    });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _pageController.dispose();
+  }
+
+  void _onPageChanged(int index) {
+    setState(() {
+      _currentIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -38,11 +58,8 @@ class _BodyState extends State<Body> {
             Expanded(
                 flex: 3,
                 child: PageView.builder(
-                  onPageChanged: (index) {
-                    setState(() {
-                      currentIndex = index;
-                    });
-                  },
+                  controller: _pageController,
+                  onPageChanged: _onPageChanged,
                   itemCount: splashData.length,
                   itemBuilder: (context, index) => WelcomeContent(
                     text: splashData[index]['text'],
@@ -60,7 +77,9 @@ class _BodyState extends State<Body> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: List.generate(
-                            splashData.length, (index) => buildDot(index)),
+                            splashData.length,
+                            (index) => BuildDot(
+                                currentIndex: _currentIndex, index: index)),
                       ),
                       Spacer(flex: 3),
                       Button(
@@ -79,18 +98,6 @@ class _BodyState extends State<Body> {
           ],
         ),
       ),
-    );
-  }
-
-  AnimatedContainer buildDot(int index) {
-    return AnimatedContainer(
-      duration: kAnimationDuration,
-      margin: EdgeInsets.only(right: 5),
-      height: 10,
-      width: currentIndex == index ? 20 : 10,
-      decoration: BoxDecoration(
-          color: currentIndex == index ? kPrimaryColor : kSecondaryColor,
-          borderRadius: BorderRadius.circular(5)),
     );
   }
 }
