@@ -1,5 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:justifiedtech/screens/signIn/sign_in_screen.dart';
+import 'package:justifiedtech/screens/signUp/sign_up_screen.dart';
 import '../../../config/size_config.dart';
 import './build_dot.dart';
 import './welcome_content.dart';
@@ -84,12 +86,17 @@ class _BodyState extends State<Body> {
                       Spacer(flex: 3),
                       Button(
                         text: 'Get Started',
-                        press: () {},
+                        press: () {
+                          Navigator.pushNamed(context, SignUpScreen.routeName);
+                        },
                       ),
+                      Spacer(),
                       AskButton(
                         ask: 'Already have an account?',
                         text: 'Sign In',
-                        press: () {},
+                        press: () {
+                          Navigator.pushNamed(context, SignInScreen.routeName);
+                        },
                       ),
                       Spacer(),
                     ],

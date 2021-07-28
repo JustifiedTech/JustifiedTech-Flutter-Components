@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import '../../../config/size_config.dart';
 import '../../../config/constants.dart';
 
-
 class WelcomeContent extends StatelessWidget {
   const WelcomeContent({Key key, this.image, this.text}) : super(key: key);
   final String text, image;
@@ -12,7 +11,7 @@ class WelcomeContent extends StatelessWidget {
       children: [
         Spacer(),
         Text(
-          'Justified',
+          'Justified Store',
           style: TextStyle(
               color: kPrimaryColor,
               fontWeight: FontWeight.bold,
@@ -27,7 +26,7 @@ class WelcomeContent extends StatelessWidget {
         ),
         Image.asset(
           image,
-          height: getProportionateScreenHeight(265),
+          height: getProportionateScreenHeight(260),
           width: getProportionateScreenWidth(235),
         ),
       ],

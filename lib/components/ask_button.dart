@@ -13,13 +13,18 @@ class AskButton extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text(ask),
+        Text(
+          ask,
+          style: TextStyle(
+              fontSize: getProportionateScreenWidth(16),
+              fontWeight: FontWeight.w700),
+        ),
         FlatButton(
             onPressed: press,
             child: Text(
               text,
               style: TextStyle(
-                  fontSize: getProportionateScreenWidth(18),
+                  fontSize: getProportionateScreenWidth(16),
                   color: kPrimaryColor),
             )),
       ],
