@@ -19,7 +19,7 @@ class AskButton extends StatelessWidget {
               fontSize: getProportionateScreenWidth(16),
               fontWeight: FontWeight.w700),
         ),
-        FlatButton(
+        TextButton(
             onPressed: press,
             child: Text(
               text,

@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
-import './config/theme.dart';
 import './config/routes.dart';
-import './screens/welcome/welcome_screen.dart';
+import './e-commerce/splash/splash_screen.dart';
+import './config/theme.dart';
 
 void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: themeData(),
       debugShowCheckedModeBanner: false,
-      title: 'JustifiedTech Ecommerce',
-      // home: WelcomeScreen(),
-      initialRoute: WelcomeScreen.routeName,
+      title: 'JTech Kit',
+      theme: theme(),
+      // home: SplashScreen(),
+      // We use routeName so that we dont need to remember the name
+      initialRoute: SplashScreen.routeName,
       routes: routes,
     );
   }
