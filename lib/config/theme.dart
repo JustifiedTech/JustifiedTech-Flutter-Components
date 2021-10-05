@@ -2,16 +2,32 @@ import 'package:flutter/material.dart';
 
 import 'constants.dart';
 
-ThemeData theme() {
-  return ThemeData(
-    scaffoldBackgroundColor: Colors.white,
-    fontFamily: "Muli",
-    appBarTheme: appBarTheme(),
-    textTheme: textTheme(),
-    inputDecorationTheme: inputDecorationTheme(),
-    visualDensity: VisualDensity.adaptivePlatformDensity,
-  );
+class MyThemes {
+  ThemeData lightTheme() {
+    return ThemeData(
+        fontFamily: 'Muli',
+        // visualDensity: VisualDensity.adaptivePlatformDensity,
+        scaffoldBackgroundColor: Colors.white,
+        accentColor: Colors.red,
+        primaryColor: Colors.white,
+        colorScheme: ColorScheme.light(),
+        brightness: Brightness.light,
+        iconTheme: IconThemeData(color: Colors.black));
+  }
+
+  ThemeData darkTheme() {
+    return ThemeData(
+        fontFamily: 'Muli',
+        // visualDensity: VisualDensity.adaptivePlatformDensity,
+        scaffoldBackgroundColor: Colors.grey.shade900,
+        accentColor: Colors.orangeAccent,
+        primaryColor: Colors.black,
+        colorScheme: ColorScheme.dark(),
+        brightness: Brightness.dark,
+        iconTheme: IconThemeData(color: Colors.white));
+  }
 }
+
 
 InputDecorationTheme inputDecorationTheme() {
   OutlineInputBorder outlineInputBorder = OutlineInputBorder(
