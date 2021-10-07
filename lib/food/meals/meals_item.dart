@@ -12,12 +12,14 @@ class MealsItem extends StatelessWidget {
       @required this.imageUrl,
       @required this.affordability,
       @required this.complexity,
-      @required this.duration});
+      @required this.duration,
+      @required this.removeItem});
 
   final String title, id, imageUrl;
   final Complexity complexity;
   final Affordability affordability;
   final int duration;
+  final Function removeItem;
 
   String get complexityText {
     switch (complexity) {
@@ -51,8 +53,13 @@ class MealsItem extends StatelessWidget {
     }
   }
 
-  void selectMeal() {
-    Get.toNamed(MealDetailScreen.routeName, arguments: id);
+  void selectMeal() async {
+    final result = await Get.toNamed(MealDetailScreen.routeName, arguments: id);
+    print(result);
+
+    if (result != null) {
+      removeItem(result);
+    }
   }
 
   @override

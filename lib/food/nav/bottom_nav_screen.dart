@@ -1,4 +1,6 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import '../nav/drawer.dart';
 import '../category/favourites_screen.dart';
 import '../category/categories_screen.dart';
 
@@ -25,6 +27,9 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: MyDrawer(),
+      // drawerScrimColor: Colors.red,
+      drawerDragStartBehavior: DragStartBehavior.start,
       appBar: AppBar(
         centerTitle: true,
         title: Text(

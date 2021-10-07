@@ -62,6 +62,7 @@ const DUMMY_MEALS = const [
     categories: [
       'c1',
       'c2',
+
     ],
     title: 'Spaghetti with Tomato Sauce',
     affordability: Affordability.Affordable,

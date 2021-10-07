@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:justifiedtech/config/size_config.dart';
+import '../../config/size_config.dart';
 
-import 'package:justifiedtech/data/dummy_data.dart';
-import 'package:justifiedtech/models/meals.dart';
+import '../../data/dummy_data.dart';
+import '../../models/meals.dart';
 
 class MealDetailScreen extends StatelessWidget {
   static const routeName = '/meal_detail';
@@ -17,6 +17,17 @@ class MealDetailScreen extends StatelessWidget {
         DUMMY_MEALS.firstWhere((meal) => meal.id == mealId);
 
     return Scaffold(
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            // Get.back();
+            Navigator.of(context).pop(mealId);
+          },
+          backgroundColor: Theme.of(context).accentColor,
+          child: Icon(
+            Icons.delete,
+            color: Theme.of(context).primaryColor,
+          ),
+        ),
         appBar: AppBar(
           title: Text(selectedMeal.title),
           centerTitle: true,
@@ -61,8 +72,8 @@ class MealDetailScreen extends StatelessWidget {
                           elevation: 3,
                           child: Row(
                             children: [
-                              Icon(Icons.check_box_outlined),
-                              SizedBox(width: 10),
+                              Icon(Icons.arrow_right_outlined),
+                              // SizedBox(width: 10),
                               Text(
                                 selectedMeal.ingredients[index],
                                 softWrap: true,
