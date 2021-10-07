@@ -1,9 +1,5 @@
 import 'package:flutter/widgets.dart';
-import '../food/category/favourites_screen.dart';
-import '../food/nav/bottom_nav_screen.dart';
-import '../food/nav/tabs_screen.dart';
-import '../food/settings/settings_screen.dart';
-import '../food/meals/meal_detail_sceen.dart';
+
 import '../food/category/categories_screen.dart';
 import '../e-commerce/cart/cart_screen.dart';
 import '../e-commerce/complete_profile/complete_profile_screen.dart';
@@ -33,9 +29,5 @@ final Map<String, WidgetBuilder> routes = {
   CartScreen.routeName: (context) => CartScreen(),
   ProfileScreen.routeName: (context) => ProfileScreen(),
   CategoryScreen.routeName: (context) => CategoryScreen(),
-  MealDetailScreen.routeName: (context) => MealDetailScreen(),
-  FavouriteScreen.routeName: (context) => FavouriteScreen(),
-  TabsScreen.routeName: (context) => TabsScreen(),
-  BottomNavScreen.routeName: (context) => BottomNavScreen(),
 
 };

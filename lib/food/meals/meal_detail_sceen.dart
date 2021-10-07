@@ -7,7 +7,9 @@ import '../../models/meals.dart';
 class MealDetailScreen extends StatelessWidget {
   static const routeName = '/meal_detail';
 
-  const MealDetailScreen();
+  const MealDetailScreen(this._isFavourite, this._toggleFavorite);
+
+  final Function _isFavourite, _toggleFavorite;
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +33,17 @@ class MealDetailScreen extends StatelessWidget {
         appBar: AppBar(
           title: Text(selectedMeal.title),
           centerTitle: true,
+          actions: [
+            IconButton(
+              color: Theme.of(context).accentColor,
+              iconSize: 30,
+              padding: const EdgeInsets.only(right: 10),
+              onPressed: () => _toggleFavorite(mealId),
+              icon: _isFavourite(mealId)
+                  ? Icon(Icons.favorite_outlined)
+                  : Icon(Icons.favorite_border_sharp),
+            )
+          ],
         ),
         body: SingleChildScrollView(
           child: Column(

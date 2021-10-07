@@ -1,22 +1,34 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import '../../models/meals.dart';
 import '../nav/drawer.dart';
 import '../category/favourites_screen.dart';
 import '../category/categories_screen.dart';
 
 class BottomNavScreen extends StatefulWidget {
   static const routeName = '/bottom_nav';
+
+  BottomNavScreen(this.favouriteMeals);
+
+  final List<Meal> favouriteMeals;
   @override
   _BottomNavScreenState createState() => _BottomNavScreenState();
 }
 
 class _BottomNavScreenState extends State<BottomNavScreen> {
-  final List<Map<String, dynamic>> _pages = [
-    {'page': CategoryScreen(), 'title': 'All Meal Categories'},
-    {'page': FavouriteScreen(), 'title': 'Favourites'}
-  ];
+  List<Map<String, dynamic>> _pages;
 
   int _selectedIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _pages = [
+      {'page': CategoryScreen(), 'title': 'All Meal Categories'},
+      {'page': FavouriteScreen(widget.favouriteMeals), 'title': 'Favourites'}
+    ];
+  }
 
   void _selectedPage(int index) {
     setState(() {
